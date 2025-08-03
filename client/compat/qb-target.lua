@@ -47,7 +47,7 @@ local function convert(options)
             end
 
             if val then
-                v.groups = {v.groups, type(val) == 'table' and table.unpack(val) or val}
+                v.groups = { v.groups, type(val) == 'table' and table.unpack(val) or val }
             end
 
             val = v.citizenid
@@ -55,13 +55,13 @@ local function convert(options)
                 if table.type(v.citizenid) ~= 'array' then
                     val = {}
                     for k in pairs(v.citizenid) do
-                        val[#val+1] = k
+                        val[#val + 1] = k
                     end
                 end
             end
 
             if val then
-                v.groups = {v.groups, type(val) == 'table' and table.unpack(val) or val}
+                v.groups = { v.groups, type(val) == 'table' and table.unpack(val) or val }
             end
         elseif groupType == 'table' then
             local val = {}
@@ -84,7 +84,7 @@ local function convert(options)
             end
 
             if val then
-                v.groups = {table.unpack(v.groups), type(val) == 'table' and table.unpack(val) or val}
+                v.groups = { table.unpack(v.groups), type(val) == 'table' and table.unpack(val) or val }
             end
 
             val = v.citizenid
@@ -92,13 +92,13 @@ local function convert(options)
                 if table.type(v.citizenid) ~= 'array' then
                     val = {}
                     for k in pairs(v.citizenid) do
-                        val[#val+1] = k
+                        val[#val + 1] = k
                     end
                 end
             end
 
             if val then
-                v.groups = {table.unpack(v.groups), type(val) == 'table' and table.unpack(val) or val}
+                v.groups = { table.unpack(v.groups), type(val) == 'table' and table.unpack(val) or val }
             end
         end
 
@@ -141,7 +141,8 @@ exportHandler('SpawnPed', function(data)
         while not HasModelLoaded(model) do Wait(1) end
 
         local coords = pedData.coords
-        local x, y, z, w = coords.x or coords[1], coords.y or coords[2], coords.z or coords[3], coords.w or coords[4] or 0.0
+        local x, y, z, w = coords.x or coords[1], coords.y or coords[2], coords.z or coords[3],
+            coords.w or coords[4] or 0.0
         if pedData.minusOne then z = z - 1.0 end
 
         local ped = CreatePed(0, model, x, y, z, w, pedData.networked or false, true)
@@ -234,7 +235,8 @@ exportHandler('AddBoxZone', function(name, center, length, width, options, targe
     return api.addBoxZone({
         name = name,
         coords = center,
-        size = vec3(width, length, (options.useZ or not options.maxZ) and center.z or math.abs(options.maxZ - options.minZ)),
+        size = vec3(width, length,
+            (options.useZ or not options.maxZ) and center.z or math.abs(options.maxZ - options.minZ)),
         debug = options.debugPoly,
         rotation = options.heading,
         options = convert(targetoptions),

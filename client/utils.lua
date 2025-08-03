@@ -18,8 +18,7 @@ function utils.raycastFromCamera(flag)
 
     while true do
         Wait(0)
-        local retval, hit, endCoords, surfaceNormal, materialHash, entityHit = GetShapeTestResultIncludingMaterial(
-        handle)
+        local retval, hit, endCoords, surfaceNormal, materialHash, entityHit = GetShapeTestResultIncludingMaterial(handle)
 
         if retval ~= 1 then
             ---@diagnostic disable-next-line: return-type-mismatch
