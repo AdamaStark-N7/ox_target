@@ -2,25 +2,31 @@ import { createOptions } from "./createOptions.js";
 
 const optionsWrapper = document.getElementById("options-wrapper");
 const body = document.body;
-const eye = document.getElementById("eyeSvg");
+const eye = document.getElementById("eye");
+const eyeicon = document.getElementById("eyeicon");
 
 window.addEventListener("message", (event) => {
+  optionsWrapper.innerHTML = "";
+
   switch (event.data.event) {
     case "visible": {
-      optionsWrapper.innerHTML = "";
+      if (event.data.state) {
+        eye.classList.remove("active");
+      }
+      eyeicon.style.visibility = "hidden";
       body.style.visibility = event.data.state ? "visible" : "hidden";
-      return eye.classList.remove("eye-hover");
+      return;
     }
 
     case "leftTarget": {
-      optionsWrapper.innerHTML = "";
-      return eye.classList.remove("eye-hover");
+      eyeicon.style.visibility = "hidden";
+      eye.classList.remove("active");
+      return;
     }
 
     case "setTarget": {
-      optionsWrapper.innerHTML = "";
-      eye.classList.add("eye-hover");
-
+      eye.classList.add("active");
+      eyeicon.style.visibility = "visible";
       if (event.data.options) {
         for (const type in event.data.options) {
           event.data.options[type].forEach((data, id) => {

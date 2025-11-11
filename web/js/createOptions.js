@@ -1,6 +1,6 @@
-import { fetchNui } from "./fetchNui.js";
+import { fetchNui } from './fetchNui.js';
 
-const optionsWrapper = document.getElementById("options-wrapper");
+const optionsWrapper = document.getElementById('options-wrapper');
 
 function onClick() {
   // when nuifocus is disabled after a click, the hover event is never released
@@ -13,14 +13,9 @@ function onClick() {
 
 export function createOptions(type, data, id, zoneId) {
   if (data.hide) return;
+  const option = document.createElement('li');
 
-  const option = document.createElement("div");
-  const iconElement = `<i class="fa-fw ${data.icon} option-icon" ${
-    data.iconColor ? `style = color:${data.iconColor} !important` : null
-  }"></i>`;
-
-  option.innerHTML = `${iconElement}<p class="option-label">${data.label}</p>`;
-  option.className = "option-container";
+  option.innerHTML = `<a><i class="fa-fw ${data.icon} option-icon" style="color:${data.iconColor || '#FFFFFF'}"></i>${data.label}</a>`;
   option.targetType = type;
   option.targetId = id;
   option.zoneId = zoneId;
